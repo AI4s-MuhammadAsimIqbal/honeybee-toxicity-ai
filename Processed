@@ -1,2 +1,19 @@
 from google.colab import files
 uploaded = files.upload()
+import os, glob
+import pandas as pd
+
+csv_files = glob.glob('/content/*.csv')
+print(csv_files)
+
+def find_file(keyword):
+    matches = [f for f in csv_files if keyword in os.path.basename(f).lower()]
+    return matches[0] if matches else None
+
+bpdb_path   = find_file('bpdb')
+ecotox_path = find_file('ecotox')
+ppdb_path   = find_file('ppdb')
+
+print(bpdb_path)
+print(ecotox_path)
+print(ppdb_path)
